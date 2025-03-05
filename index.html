@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>My Voxel Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voxel Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Main Menu Overlay -->
+  <!-- Main Menu -->
   <div id="mainMenu" class="overlay">
-    <h1>My Voxel Game</h1>
+    <h1>Voxel Sandbox</h1>
     <button id="startButton">Start Game</button>
     <button id="settingsButton">Settings</button>
-  </div>
-
-  <!-- Settings Menu Overlay -->
-  <div id="settingsMenu" class="overlay hidden">
-    <h2>Settings</h2>
-    <label for="modeSelect">Game Mode:</label>
-    <select id="modeSelect">
-      <option value="creative">Creative</option>
-      <option value="survival">Survival</option>
-    </select>
-    <button id="backButton">Back</button>
   </div>
 
   <!-- Game Canvas -->
   <canvas id="gameCanvas"></canvas>
 
-  <!-- Three.js from CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- Main Game Script -->
+  <script src="settings.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
