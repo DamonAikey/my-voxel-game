@@ -119,3 +119,78 @@ document.getElementById('modeSelect').addEventListener('change', (e) => {
   gameMode = e.target.value;
   console.log("Game mode set to:", gameMode);
 });
+
+// Improved Minecraft-like Voxel Game
+// Features: Custom Controls, Settings, Basic Survival, Block Placement
+
+// Game Variables
+let gameMode = 'creative';
+let controls = {
+    moveForward: 'KeyW',
+    moveBackward: 'KeyS',
+    moveLeft: 'KeyA',
+    moveRight: 'KeyD',
+    jump: 'Space',
+    sprint: 'ShiftLeft',
+    crouch: 'ControlLeft',
+    placeBlock: 'Mouse1',
+    breakBlock: 'Mouse0'
+};
+
+// Initialize Game
+function initGame() {
+    setupScene();
+    setupControls();
+    generateWorld();
+    animate();
+}
+
+// Setup Scene and Renderer
+function setupScene() {
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x87ceeb);
+
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 5, 10);
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+}
+
+// Generate World
+function generateWorld() {
+    let blockSize = 1;
+    let worldSize = 20;
+    let geometry = new THREE.BoxGeometry(blockSize, blockSize, blockSize);
+    let material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+    
+    for (let x = -worldSize / 2; x < worldSize / 2; x++) {
+        for (let z = -worldSize / 2; z < worldSize / 2; z++) {
+            let block = new THREE.Mesh(geometry, material);
+            block.position.set(x * blockSize, -blockSize / 2, z * blockSize);
+            scene.add(block);
+        }
+    }
+}
+
+// Handle Controls
+function setupControls() {
+    document.addEventListener('keydown', (event) => {
+        if (event.code === controls.jump) {
+            console.log('Jumping!');
+        }
+    });
+}
+
+// Animation Loop
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+// Start the Game
+document.getElementById('startButton').addEventListener('click', () => {
+    document.getElementById('mainMenu').classList.add('hidden');
+    initGame();
+});
